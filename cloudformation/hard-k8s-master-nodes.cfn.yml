@@ -1,8 +1,11 @@
 Parameters:
   UbuntuAMI:
     Type: AWS::SSM::Parameter::Value<String>
-    Default: /aws/service/canonical/ubuntu/server/20.04/stable/current/amd64/hvm/ebs-gp2
+    Default: /aws/service/canonical/ubuntu/server/20.04/stable/current/amd64/hvm/ebs-gp2/ami-id
     Description: EC2 Instance Ubuntu AMI
+  ParamKeyName:
+    Type: AWS::EC2::KeyPair::KeyName
+    Default: ec2-key
 
 Resources:
   HardK8sMaster0:
@@ -100,11 +103,6 @@ Resources:
                 10.240.0.21 worker-1
                 10.240.0.22 worker-2
       Tags: [ { "Key": "Name", "Value": "master-2" } ]
-
-Parameters:
-  ParamKeyName:
-    Type: AWS::EC2::KeyPair::KeyName
-    Default: ec2-key
 
 Outputs:
   Master0:

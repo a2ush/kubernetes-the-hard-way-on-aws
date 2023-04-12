@@ -3,6 +3,9 @@ Parameters:
     Type: AWS::SSM::Parameter::Value<String>
     Default: /aws/service/canonical/ubuntu/server/20.04/stable/current/amd64/hvm/ebs-gp2
     Description: EC2 Instance Ubuntu AMI
+  ParamKeyName:
+    Type: AWS::EC2::KeyPair::KeyName
+    Default: ec2-key
 
 Resources:
   HardK8sWorker0:
@@ -157,11 +160,6 @@ Resources:
           echo 10.200.2.0/24 > /opt/pod_cidr.txt
           --//
       Tags: [ { "Key": "Name", "Value": "worker-2" } ]
-
-Parameters:
-  ParamKeyName:
-    Type: AWS::EC2::KeyPair::KeyName
-    Default: ec2-key
 
 Outputs:
   Worker0:
